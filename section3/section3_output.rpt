@@ -1,0 +1,52 @@
+﻿/*------------------------
+-- Section 3 outputs
+
+-- part 1
+exec [dw].[total_tickets_by_genre];
+
+-- part 2
+exec [dw].[total_revenue_for_year];
+------------------------*/
+genre                                              total_tickets_sold
+-------------------------------------------------- --------------------
+Adventure                                          892342587
+Action                                             556982514
+NULL                                               140504099
+Drama                                              42306002
+
+(4 rows affected)
+
+name                                               genre                                              year        total_for_year
+-------------------------------------------------- -------------------------------------------------- ----------- --------------------
+Avengers: Endgame                                  NULL                                               2019        858373000
+Star Wars Ep. VII: The Force Awakens               Action                                             2015        742208942
+Black Panther                                      Action                                             2018        700059566
+The Avengers                                       Adventure                                          2012        623357910
+The Dark Knight                                    Adventure                                          2008        531001578
+Star Wars Ep. VIII: The Last Jedi                  Action                                             2017        517218368
+Finding Dory                                       Action                                             2016        486295561
+Titanic                                            Adventure                                          1998        443319081
+Shrek 2                                            Adventure                                          2004        441226247
+Star Wars Ep. I: The Phantom Menace                Adventure                                          1999        430443350
+Pirates of the Caribbean: Dead Man’s Chest         Action                                             2006        423315812
+Toy Story 3                                        Action                                             2010        415004880
+Iron Man 3                                         Adventure                                          2013        408992272
+Spider-Man                                         Adventure                                          2002        403706375
+Transformers: Revenge of the Fallen                Action                                             2009        402111870
+Harry Potter and the Deathly Hallows: Part II      Action                                             2011        381011219
+Star Wars Ep. III: Revenge of the Sith             Action                                             2005        380270577
+Finding Nemo                                       Adventure                                          2003        339714367
+Spider-Man 3                                       Adventure                                          2007        336530303
+Guardians of the Galaxy                            Adventure                                          2014        333055258
+Independence Day                                   Adventure                                          1996        306169255
+Harry Potter and the Sorcerer’s Stone              Adventure                                          2001        300404434
+How the Grinch Stole Christmas                     Adventure                                          2000        253367455
+Men in Black                                       Adventure                                          1997        250650052
+Shang-Chi and the Legend of the Ten Rings          NULL                                               2021        224226704
+Bad Boys For Life                                  NULL                                               2020        204417855
+Batman Forever                                     Drama                                              1995        184031112
+
+(27 rows affected)
+
+
+Completion time: 2022-02-02T17:16:37.6242897+11:00
