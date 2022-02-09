@@ -1,0 +1,38 @@
+{
+    "name": "factmoviestatistics",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "Datamart",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": [
+            {
+                "name": "movie_sk",
+                "type": "bigint",
+                "precision": 19
+            },
+            {
+                "name": "year",
+                "type": "int",
+                "precision": 10
+            },
+            {
+                "name": "total_for_year",
+                "type": "bigint",
+                "precision": 19
+            },
+            {
+                "name": "tickets_sold",
+                "type": "bigint",
+                "precision": 19
+            }
+        ],
+        "typeProperties": {
+            "schema": "dw",
+            "table": "FACT_moviestatistics"
+        }
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

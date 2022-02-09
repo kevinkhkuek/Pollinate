@@ -1,0 +1,39 @@
+{
+    "name": "FACT_moviestatistics",
+    "properties": {
+        "type": "MappingDataFlow",
+        "typeProperties": {
+            "sources": [
+                {
+                    "dataset": {
+                        "referenceName": "landing_movie_details",
+                        "type": "DatasetReference"
+                    },
+                    "name": "landingmoviedetails"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "di_movie",
+                        "type": "DatasetReference"
+                    },
+                    "name": "dimovie"
+                }
+            ],
+            "sinks": [
+                {
+                    "dataset": {
+                        "referenceName": "factmoviestatistics",
+                        "type": "DatasetReference"
+                    },
+                    "name": "factmoviestats"
+                }
+            ],
+            "transformations": [
+                {
+                    "name": "lkpdimmovie"
+                }
+            ],
+            "script": "source(output(\n\t\tyear as integer,\n\t\tmovie as string,\n\t\tgenre as string,\n\t\tmpaa_rating as string,\n\t\tdistributor as string,\n\t\ttot_for_year as long,\n\t\ttot_in_2019 as long,\n\t\ttickets_sold as long\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> landingmoviedetails\nsource(output(\n\t\tmovie_sk as long,\n\t\tmovie_bk as string,\n\t\tname as string,\n\t\tgenre as string,\n\t\tmpaa_rating as string,\n\t\tdistributor as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> dimovie\nlandingmoviedetails, dimovie lookup(movie == movie_bk,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> lkpdimmovie\nlkpdimmovie sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tmovie_sk as long,\n\t\tyear as integer,\n\t\ttotal_for_year as long,\n\t\ttickets_sold as long\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tmovie_sk,\n\t\tyear,\n\t\ttotal_for_year = tot_for_year,\n\t\ttickets_sold\n\t)) ~> factmoviestats"
+        }
+    }
+}

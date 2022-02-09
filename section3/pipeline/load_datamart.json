@@ -1,0 +1,71 @@
+{
+    "name": "load_datamart",
+    "properties": {
+        "activities": [
+            {
+                "name": "load_DI_movie",
+                "type": "ExecuteDataFlow",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "1.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataflow": {
+                        "referenceName": "DI_movie",
+                        "type": "DataFlowReference"
+                    },
+                    "compute": {
+                        "coreCount": 8,
+                        "computeType": "General"
+                    },
+                    "traceLevel": "Coarse"
+                }
+            },
+            {
+                "name": "load_FACT_moviestats",
+                "type": "ExecuteDataFlow",
+                "dependsOn": [
+                    {
+                        "activity": "load_DI_movie",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "1.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataflow": {
+                        "referenceName": "FACT_moviestatistics",
+                        "type": "DataFlowReference"
+                    },
+                    "compute": {
+                        "coreCount": 8,
+                        "computeType": "General"
+                    },
+                    "traceLevel": "None",
+                    "cacheSinks": {
+                        "firstRowOnly": true
+                    }
+                }
+            }
+        ],
+        "folder": {
+            "name": "datamart"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-02-02T05:19:17Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}

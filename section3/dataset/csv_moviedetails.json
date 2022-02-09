@@ -1,0 +1,25 @@
+{
+    "name": "csv_moviedetails",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "kkhkblob01",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "HighestGrossers_.csv",
+                "folderPath": "in",
+                "container": "datamart"
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": []
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

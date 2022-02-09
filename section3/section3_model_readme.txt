@@ -26,19 +26,19 @@ total_for_year	bigint
 tickets_sold	bigint	
 
 
-Built an ADF pipeline to load the dimensions (DI_movie) first then the facts (FACT_moviestatistics).
+Built an ADF pipeline(load_datamart) to load the dimensions (DI_movie) first then the facts (FACT_moviestatistics).
 
-Load of dimension DI_movie is via a dataflow.  Simple mapping.  which can be refined later.
+Load of dimension DI_movie is via a dataflow.  Simple mapping.  which can be refined later to include eg. SCD t2.
 
 Load of fact FACT_moviestatistics is via another dataflow.  This has a lookup to the dimension to populate the surrogateforeign key movie_sk in the fact.  Simple mapping from source to sink datasets
 
 
 ** STEP 3 **
 Section3 output required in 'section3_output.rpt'.
-Section3 stored procedures in DDLs provided.
+Section3 stored procedures in DDLs provided (SQL_Scripts).
 
 
 
 
-Note: all the DDLs for the stage and dw tables , and stored procs provided.  also the section3 output required in 'section3_output.rpt'.
+Note: all the DDLs for the stage and dw tables , and stored procs provided (folder SQL_Scripts).  also the section3 output required in 'section3_output.rpt'.
 

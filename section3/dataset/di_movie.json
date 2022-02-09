@@ -1,0 +1,43 @@
+{
+    "name": "di_movie",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "Datamart",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": [
+            {
+                "name": "movie_sk",
+                "type": "bigint",
+                "precision": 19
+            },
+            {
+                "name": "movie_bk",
+                "type": "nvarchar"
+            },
+            {
+                "name": "name",
+                "type": "nvarchar"
+            },
+            {
+                "name": "genre",
+                "type": "nvarchar"
+            },
+            {
+                "name": "mpaa_rating",
+                "type": "nvarchar"
+            },
+            {
+                "name": "distributor",
+                "type": "nvarchar"
+            }
+        ],
+        "typeProperties": {
+            "schema": "dw",
+            "table": "DI_movie"
+        }
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}
